@@ -1,0 +1,28 @@
+# Core ML frameworks for Apple Silicon
+mlx>=0.19.0
+mlx-lm>=0.18.0
+
+# Alternative: PyTorch (if needed)
+# torch>=2.0.0
+# torchvision>=0.15.0
+# torchaudio>=2.0.0
+
+# Transformers ecosystem
+transformers>=4.35.0
+datasets>=2.14.0
+accelerate>=0.24.0
+peft>=0.6.0
+huggingface-hub>=0.19.0
+
+# Utilities
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+tqdm>=4.66.0
+numpy>=1.24.0
+
+# Development
+jupyterlab>=4.0.0
+ipython>=8.17.0
+
+# Per installare:
+# pip install -r requirements.txt

@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+ml-env/
+.conda/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Models (large files)
+models/**/*.bin
+models/**/*.safetensors
+models/**/*.gguf
+*.bin
+*.safetensors
+*.gguf
+
+# Keep directory structure but ignore model files
+!models/.gitkeep
+
+# Data (potentially sensitive)
+data/**/*.jsonl
+data/**/*.csv
+data/**/*.txt
+
+# Keep template
+!data/my_data.json
+
+# Training outputs
+results/
+checkpoints/
+*.log
+wandb/
+runs/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+tmp/
+temp/

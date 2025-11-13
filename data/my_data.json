@@ -1,0 +1,22 @@
+[
+  {
+    "domanda": "Cos'è Python?",
+    "risposta": "Python è un linguaggio di programmazione ad alto livello, interpretato e versatile. È molto usato per web development, data science, machine learning e automazione."
+  },
+  {
+    "domanda": "Come si crea una lista in Python?",
+    "risposta": "Per creare una lista in Python si usano le parentesi quadre:\n\nmy_list = [1, 2, 3, 'quattro']\n\nOppure con la funzione list():\n\nmy_list = list(range(5))"
+  },
+  {
+    "domanda": "Cosa sono le funzioni lambda?",
+    "risposta": "Le funzioni lambda sono funzioni anonime (senza nome) definite in una sola riga. Esempio:\n\nsquare = lambda x: x ** 2\nprint(square(5))  # Output: 25"
+  },
+  {
+    "domanda": "Come gestire gli errori in Python?",
+    "risposta": "Si usano i blocchi try-except:\n\ntry:\n    risultato = 10 / 0\nexcept ZeroDivisionError:\n    print('Errore: divisione per zero!')\nexcept Exception as e:\n    print(f'Errore: {e}')"
+  },
+  {
+    "domanda": "Cosa sono i decoratori?",
+    "risposta": "I decoratori sono funzioni che modificano il comportamento di altre funzioni. Esempio:\n\ndef mio_decoratore(func):\n    def wrapper():\n        print('Prima')\n        func()\n        print('Dopo')\n    return wrapper\n\n@mio_decoratore\ndef saluta():\n    print('Ciao!')"
+  }
+]
