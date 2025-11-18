@@ -42,6 +42,10 @@ checkpoints/
 wandb/
 runs/
 
+# Webapp logs
+webapp/*.log
+webapp/.env
+
 # OS
 .DS_Store
 .DS_Store?

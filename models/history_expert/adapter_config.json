@@ -1,0 +1,40 @@
+{
+    "adapter_path": "models/history_expert",
+    "batch_size": 1,
+    "config": "models/history_expert/adapter_config.json",
+    "data": "data/history_expert",
+    "fine_tune_type": "lora",
+    "grad_accumulation_steps": 2,
+    "grad_checkpoint": false,
+    "iters": 300,
+    "learning_rate": 0.0001,
+    "lora_parameters": {
+        "rank": 8,
+        "dropout": 0.05,
+        "scale": 20.0
+    },
+    "lr_schedule": null,
+    "mask_prompt": false,
+    "max_seq_length": 1536,
+    "model": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+    "num_layers": 16,
+    "optimizer": "adam",
+    "optimizer_config": {
+        "adam": {},
+        "adamw": {},
+        "muon": {},
+        "sgd": {},
+        "adafactor": {}
+    },
+    "project_name": null,
+    "report_to": null,
+    "resume_adapter_file": null,
+    "save_every": 100,
+    "seed": 42,
+    "steps_per_eval": 200,
+    "steps_per_report": 10,
+    "test": false,
+    "test_batches": 500,
+    "train": true,
+    "val_batches": 25
+}

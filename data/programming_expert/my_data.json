@@ -1,0 +1,22 @@
+[
+  {
+    "domanda": "Come si crea una funzione in Python?",
+    "risposta": "In Python si crea una funzione usando la keyword 'def':\n\ndef mia_funzione(parametro):\n    # corpo della funzione\n    return risultato\n\nEsempio pratico:\n\ndef somma(a, b):\n    return a + b\n\nrisultato = somma(5, 3)  # ritorna 8"
+  },
+  {
+    "domanda": "Cos'è una lista in Python?",
+    "risposta": "Una lista in Python è una collezione ordinata e modificabile di elementi:\n\n# Creare una lista\nmia_lista = [1, 2, 3, 'ciao', True]\n\n# Accedere agli elementi\nprimo = mia_lista[0]  # 1\n\n# Aggiungere elementi\nmia_lista.append(4)\n\n# Iterare\nfor elemento in mia_lista:\n    print(elemento)"
+  },
+  {
+    "domanda": "Come si gestiscono gli errori in Python?",
+    "risposta": "In Python si usano i blocchi try-except:\n\ntry:\n    # codice che potrebbe generare errori\n    risultato = 10 / 0\nexcept ZeroDivisionError:\n    print('Errore: divisione per zero!')\nexcept Exception as e:\n    print(f'Errore generico: {e}')\nfinally:\n    print('Questo viene sempre eseguito')"
+  },
+  {
+    "domanda": "Qual è la differenza tra == e is in Python?",
+    "risposta": "== confronta i VALORI, mentre 'is' confronta l'IDENTITÀ (se sono lo stesso oggetto in memoria):\n\na = [1, 2, 3]\nb = [1, 2, 3]\nc = a\n\nprint(a == b)  # True (stesso valore)\nprint(a is b)  # False (oggetti diversi)\nprint(a is c)  # True (stesso oggetto)\n\nUsa == per confrontare valori, usa 'is' solo per None, True, False."
+  },
+  {
+    "domanda": "Come si legge un file in Python?",
+    "risposta": "Il modo migliore è usare 'with' per gestire automaticamente la chiusura del file:\n\n# Leggere tutto il contenuto\nwith open('file.txt', 'r') as f:\n    contenuto = f.read()\n\n# Leggere riga per riga\nwith open('file.txt', 'r') as f:\n    for riga in f:\n        print(riga.strip())\n\n# Leggere tutte le righe in una lista\nwith open('file.txt', 'r') as f:\n    righe = f.readlines()"
+  }
+]

@@ -1,12 +1,14 @@
 # Jarvis MLX 🤖
 
-Fine-tuning semplicissimo di LLM su Apple Silicon (M1/M2/M3/M4)
+Fine-tuning di modelli esperti AI su Apple Silicon
 
-[![MLX](https://img.shields.io/badge/MLX-Apple%20Silicon-orange)](https://github.com/ml-explore/mlx)
-[![Python](https://img.shields.io/badge/Python-3.9+-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+Sistema per creare e gestire modelli AI specializzati usando **MLX** su Mac (M1/M2/M3/M4).
 
-Sistema ultra-semplificato per fare fine-tuning di Large Language Models usando **MLX** su Mac con Apple Silicon.
+## Guida Rapida
+
+Leggi **[GUIDA_RAPIDA.md](GUIDA_RAPIDA.md)** per workflow quotidiano (modificare dataset, re-training, test, webapp).
+
+---
 
 ## 🔧 Setup Iniziale (Prima Volta)
 
@@ -57,22 +59,9 @@ Questo crea automaticamente `train.jsonl` e `valid.jsonl` nel formato corretto.
 
 ### 3️⃣ Avvia il Training
 
-**Modello PICCOLO (veloce, test):**
 ```bash
 python -m mlx_lm lora \
-  --model mlx-community/Qwen2.5-0.5B-Instruct-4bit \
-  --train \
-  --data ../data \
-  --adapter-path ../models/my_model \
-  --iters 500 \
-  --batch-size 2 \
-  --learning-rate 1e-4
-```
-
-**Modello MEDIO (più potente):**
-```bash
-python -m mlx_lm lora \
-  --model mlx-community/Qwen2.5-1.5B-Instruct-4bit \
+  --model mlx-community/Qwen2.5-7B-Instruct-4bit \
   --train \
   --data ../data \
   --adapter-path ../models/my_model \
@@ -81,24 +70,14 @@ python -m mlx_lm lora \
   --learning-rate 1e-4
 ```
 
-**Modello GRANDE (massima qualità, richiede 16GB RAM):**
-```bash
-python -m mlx_lm lora \
-  --model mlx-community/Qwen2.5-3B-Instruct-4bit \
-  --train \
-  --data ../data \
-  --adapter-path ../models/my_model \
-  --iters 1000 \
-  --batch-size 2 \
-  --learning-rate 1e-4
-```
+**Nota:** Il modello 7B richiede almeno 16GB di RAM.
 
 ## 🧪 Testa il Modello
 
 **Singola domanda:**
 ```bash
 python -m mlx_lm generate \
-  --model mlx-community/Qwen2.5-0.5B-Instruct-4bit \
+  --model mlx-community/Qwen2.5-7B-Instruct-4bit \
   --adapter-path ../models/my_model \
   --prompt "La tua domanda"
 ```
@@ -106,7 +85,7 @@ python -m mlx_lm generate \
 **Chat interattiva:**
 ```bash
 python -m mlx_lm chat \
-  --model mlx-community/Qwen2.5-0.5B-Instruct-4bit \
+  --model mlx-community/Qwen2.5-7B-Instruct-4bit \
   --adapter-path ../models/my_model
 ```
 
@@ -159,64 +138,22 @@ Ecco alcuni template pronti da copiare:
 | `--learning-rate` | Velocità apprendimento | 1e-4 |
 | `--model` | Modello da usare | Vedi sotto |
 
-## 🎯 Modelli Consigliati
+## 🎯 Modello Utilizzato
 
-### Per iniziare (8GB RAM)
-```
-mlx-community/Qwen2.5-0.5B-Instruct-4bit
-```
-- RAM: ~1GB, velocissimo (~6 it/sec)
-
-### Uso generale (8-16GB RAM)
-```
-mlx-community/Qwen2.5-1.5B-Instruct-4bit  # Raccomandato
-```
-- RAM: ~2GB, bilanciato (~1.6 it/sec)
-
-### Qualità superiore (16GB RAM)
-```
-mlx-community/Qwen2.5-3B-Instruct-4bit
-```
-- RAM: ~4GB, molto potente (~0.8 it/sec)
-
-### Massima qualità (16GB RAM)
 ```
 mlx-community/Qwen2.5-7B-Instruct-4bit
 ```
-- RAM: ~6GB, top-tier (~0.7 it/sec)
-
-### Modelli avanzati (32GB+ RAM)
-
-**Ancora più potenti:**
-```bash
-# 14B - Massima qualità per 32GB
-mlx-community/Qwen2.5-14B-Instruct-4bit
-
-# Llama alternative
-mlx-community/Llama-3.1-8B-Instruct-4bit
-```
-
-**Specializzati:**
-```bash
-# Codice (programmazione)
-mlx-community/DeepSeek-Coder-7B-Instruct-4bit
-mlx-community/CodeLlama-13B-Instruct-4bit
-
-# Multilingue (italiano++)
-mlx-community/aya-23-8B-4bit
-```
-
-**Trovane altri:** https://huggingface.co/mlx-community
+- RAM richiesta: ~6-8GB
+- Velocità: ~0.7 iterazioni/sec
+- Qualità: Eccellente per la maggior parte dei task
+- Ideale per: Conversazione, Q&A, coding, traduzioni
 
 ## 💡 Tips
 
 1. **Inizia piccolo**: 10-20 esempi bastano per testare
 2. **Qualità > Quantità**: Meglio 50 esempi buoni che 500 mediocri
 3. **Monitora il loss**: Deve scendere (es. da 3.0 a < 0.1)
-4. **Tempo di training**:
-   - 0.5B: ~1-2 minuti per 100 iter
-   - 1.5B: ~2-4 minuti per 100 iter
-   - 3B: ~5-10 minuti per 100 iter
+4. **Tempo di training**: ~10-15 minuti per 100 iterazioni con il modello 7B
 
 ## 🚀 Workflow Completo
 
@@ -231,9 +168,9 @@ nano ../data/my_data.json  # o usa VS Code, qualsiasi editor
 # 3. Converti
 python convert_dataset.py ../data/my_data.json
 
-# 4. Allena (modello 1.5B consigliato)
+# 4. Allena
 python -m mlx_lm lora \
-  --model mlx-community/Qwen2.5-1.5B-Instruct-4bit \
+  --model mlx-community/Qwen2.5-7B-Instruct-4bit \
   --train \
   --data ../data \
   --adapter-path ../models/my_model \
@@ -242,7 +179,7 @@ python -m mlx_lm lora \
 
 # 5. Testa
 python -m mlx_lm chat \
-  --model mlx-community/Qwen2.5-1.5B-Instruct-4bit \
+  --model mlx-community/Qwen2.5-7B-Instruct-4bit \
   --adapter-path ../models/my_model
 ```
 
@@ -252,10 +189,10 @@ python -m mlx_lm chat \
 A: Minimo 10-20, ideale 50-200.
 
 **Q: Quanto tempo ci vuole?**
-A: 1000 iterazioni su 1.5B = ~20-30 minuti.
+A: 1000 iterazioni con il 7B = ~2-3 ore (dipende dal Mac).
 
 **Q: Out of memory?**
-A: Usa `--batch-size 1` o modello più piccolo.
+A: Usa `--batch-size 1` o riduci il numero di iterazioni processate simultaneamente.
 
 **Q: Il modello non impara?**
 A: Aumenta `--iters` a 1500-2000 o `--learning-rate` a 5e-4.
@@ -280,6 +217,52 @@ fine-tuning/
     ├── test_setup.py           # Test installazione
     └── convert_dataset.py      # Conversione dataset
 ```
+
+## 🌐 Web Chat Interface
+
+Chatta con i tuoi modelli tramite interfaccia web!
+
+```bash
+cd webapp
+./start_server.sh
+```
+
+Poi apri il browser su `http://localhost:5000`
+
+### Caratteristiche
+- ✅ Interfaccia moderna stile ChatGPT
+- ✅ Selezione tra più modelli esperti
+- ✅ Accessibile da rete locale (smartphone, tablet, ecc.)
+- ✅ Cronologia conversazione
+- ✅ Dark mode
+
+Vedi [webapp/README.md](webapp/README.md) per dettagli.
+
+## 🎓 Creare Modelli Esperti
+
+Crea modelli specializzati in diversi argomenti!
+
+```bash
+cd scripts
+./create_expert.sh programming_expert 1000
+```
+
+Lo script:
+1. Crea template dataset
+2. (Tu modifichi il dataset con le tue Q&A)
+3. Converte e fa training automaticamente
+4. Testa il modello
+
+Poi abilita il modello in `models/models_config.json` e sarà disponibile nella webapp!
+
+**Esempi di esperti:**
+- 💻 Programmazione
+- ⭐ Astrologia
+- 🧬 Biologia
+- 📚 Storia
+- 👨‍🍳 Cucina
+- 💼 Business
+- ... e qualsiasi cosa vuoi!
 
 ---
 

@@ -1,0 +1,10 @@
+# Web App Requirements
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# MLX (già installato globalmente)
+mlx>=0.19.0
+mlx-lm>=0.18.0
+
+# Per installare solo le dipendenze web:
+# pip install -r requirements.txt

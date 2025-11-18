@@ -1,0 +1,53 @@
+{
+  "base_model": "mlx-community/Qwen2.5-7B-Instruct-4bit",
+  "models": [
+    {
+      "id": "base",
+      "name": "Modello Base",
+      "description": "Qwen 7B originale senza fine-tuning",
+      "icon": "🤖",
+      "adapter_path": null,
+      "enabled": true
+    },
+    {
+      "id": "programming",
+      "name": "Esperto Programmazione",
+      "description": "Specializzato in Python, coding e best practices",
+      "icon": "💻",
+      "adapter_path": "programming_expert",
+      "enabled": true
+    },
+    {
+      "id": "astrology",
+      "name": "Esperto Astrologia",
+      "description": "Specializzato in oroscopi, segni zodiacali e carta natale",
+      "icon": "⭐",
+      "adapter_path": "astrology_expert",
+      "enabled": true
+    },
+    {
+      "id": "biology",
+      "name": "Esperto Biologia",
+      "description": "Specializzato in biologia, anatomia e scienze naturali",
+      "icon": "🧬",
+      "adapter_path": "biology_expert",
+      "enabled": true
+    },
+    {
+      "id": "history",
+      "name": "Esperto Storia",
+      "description": "Specializzato in eventi storici e personaggi famosi",
+      "icon": "📚",
+      "adapter_path": "history_expert",
+      "enabled": true
+    },
+    {
+      "id": "cooking",
+      "name": "Esperto Cucina",
+      "description": "Specializzato in ricette italiane e tecniche culinarie",
+      "icon": "👨‍🍳",
+      "adapter_path": "cooking_expert",
+      "enabled": true
+    }
+  ]
+}
