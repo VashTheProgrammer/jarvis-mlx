@@ -255,14 +255,28 @@ Lo script:
 
 Poi abilita il modello in `models/models_config.json` e sarà disponibile nella webapp!
 
-**Esempi di esperti:**
-- 💻 Programmazione
-- ⭐ Astrologia
-- 🧬 Biologia
-- 📚 Storia
-- 👨‍🍳 Cucina
-- 💼 Business
-- ... e qualsiasi cosa vuoi!
+**Esempi di esperti disponibili:**
+- 💻 **Programmazione**: Python, coding, best practices
+- ⭐ **Astrologia**: Oroscopi, segni zodiacali, carta natale
+- 🧬 **Biologia**: Anatomia, scienze naturali
+- 📚 **Storia**: Eventi storici, personaggi famosi
+- 👨‍🍳 **Cucina**: Ricette italiane, tecniche culinarie
+- 📖 **Physophia**: Esperto del mondo fantasy (esempio di training da libro)
+- 💼 **Il tuo esperto personalizzato!**
+
+### Training da Libro/Documento
+
+Per trainare su un libro o documento lungo (come Physophia), usa il training incrementale:
+
+```bash
+# 1. Crea dataset con chunk piccoli (200 parole max)
+python3 scripts/create_small_chunks_dataset.py
+
+# 2. Training automatico in batch
+scripts/train_all_batches.sh
+```
+
+**Nota**: Il fine-tuning su testi narrativi lunghi ha limiti. Per migliori risultati, considera **RAG (Retrieval-Augmented Generation)** invece del fine-tuning diretto.
 
 ---
 

@@ -138,9 +138,13 @@ def load_model(model_id):
     return loaded_models[model_id]
 
 
-def format_prompt(message, conversation_history=None):
-    """Formatta il prompt in formato chat"""
+def format_prompt(message, conversation_history=None, system_prompt=None):
+    """Formatta il prompt in formato chat con system prompt opzionale"""
     messages = []
+
+    # Aggiungi system prompt se presente
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
 
     # Aggiungi lo storico della conversazione se presente
     if conversation_history:
@@ -154,7 +158,9 @@ def format_prompt(message, conversation_history=None):
     # Formatta in stile chat (Qwen format)
     formatted = ""
     for msg in messages:
-        if msg['role'] == 'user':
+        if msg['role'] == 'system':
+            formatted += f"<|im_start|>system\n{msg['content']}<|im_end|>\n"
+        elif msg['role'] == 'user':
             formatted += f"<|im_start|>user\n{msg['content']}<|im_end|>\n"
         else:
             formatted += f"<|im_start|>assistant\n{msg['content']}<|im_end|>\n"
@@ -241,8 +247,11 @@ def api_chat():
         model = model_data['model']
         tokenizer = model_data['tokenizer']
 
+        # Ottieni il system prompt se presente nella configurazione
+        system_prompt = model_data['info'].get('system_prompt', None)
+
         # Formatta il prompt
-        prompt = format_prompt(message, history)
+        prompt = format_prompt(message, history, system_prompt=system_prompt)
 
         # Genera la risposta
         response = generate(
@@ -287,8 +296,11 @@ def api_chat_stream():
             model = model_data['model']
             tokenizer = model_data['tokenizer']
 
+            # Ottieni il system prompt se presente nella configurazione
+            system_prompt = model_data['info'].get('system_prompt', None)
+
             # Formatta il prompt
-            prompt = format_prompt(message, history)
+            prompt = format_prompt(message, history, system_prompt=system_prompt)
 
             # Tokenizza il prompt
             prompt_tokens = mx.array(tokenizer.encode(prompt))
